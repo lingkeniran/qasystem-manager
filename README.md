@@ -5,5 +5,5 @@ npm install
 
 ### 运行项目
 ```
-npm runserver
+npm run server
 ```

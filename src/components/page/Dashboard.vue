@@ -9,10 +9,10 @@
                             <div class="user-info-name">{{username}}</div>
                             <div>普通管理员</div>
                         </div>
-                        <div class="welcome">
-                            欢迎来到管理员后台
-                        </div>
                     </div> 
+                    <div class="welcome">
+                        欢迎来到管理员后台
+                    </div>
                 </el-card>
                 <el-row :gutter="20">
                     <el-col :span="12">

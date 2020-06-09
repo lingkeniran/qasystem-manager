@@ -35,7 +35,7 @@
                             分类查看<i class="el-icon-arrow-down el-icon--right"></i>
                         </el-button>
                         <el-dropdown-menu slot="dropdown">
-                            <el-dropdown-item><div @click="getData()">全部用户</div></el-dropdown-item>
+                            <el-dropdown-item><div @click="getAllUser()">全部用户</div></el-dropdown-item>
                             <el-dropdown-item><div @click="getNormalUser()">正常用户</div></el-dropdown-item>
                             <el-dropdown-item><div @click="getBlockedUser()">被拉黑用户</div></el-dropdown-item>
                         </el-dropdown-menu>
@@ -160,19 +160,14 @@ export default {
             this.state=1
             this.getData()
         },
+        getAllUser(){
+            this.state=''
+            this.getData()
+        },
         searchTime(){
-            // console.log(picker)
-            // console.log(this.datevalue)
             this.startTime=this.datevalue[0]
             this.endTime=this.datevalue[1]
             this.getData()
-            // console.log('startTime',this.startTime,'endTime',this.endTime)
-            // for (let i = 0; i < length; i++) {
-            //     // ids.push( this.readList[i].um_id)
-            //     times += this.datevalue[i]+ ',';
-            // }
-            // console.log(times)
-
         },
         searchUser(){
             this.getData()
@@ -224,153 +219,6 @@ export default {
             this.$set(this.query, 'pageIndex', 1);
             this.getData();
         },
-        // 同意用户注册
-        // handleAgree(index, row) {
-        //     this.idx = index;
-        //     this.form = row;
-        //     // console.log('单条同意',index,row)
-        //     let data = {
-        //         token: window.sessionStorage.getItem('token'),
-        //         uri_id:row.uri_id
-        //     }
-        //     let _this=this
-        //     // console.log(data)
-        //     this.$axios({
-        //         method: "post",
-        //         url: 'administrator/agreeUser',
-        //         data: this.$Qs.stringify(data)
-        //     })
-        //     .then(function(res) {
-        //         // console.log("单条同意",res);
-        //         if(res.data.resultCode==20032){
-        //             _this.getData()
-        //             // location.reload()
-        //         }
-        //         else if(res.data.resultCode==20033){
-        //             this.$message.error('审核失败')
-        //         }
-        //     })
-        //     .catch(function(err) {
-        //         console.log(err);
-        //     })
-        // },
-        // // 不同意用户注册
-        // handleDisagree(index, row) {
-        //     // 二次确认删除
-        //     this.$confirm('确定要不通过用户注册吗？', '提示', {
-        //         type: 'warning'
-        //     })
-        //         .then(() => {
-        //             this.idx = index;
-        //             this.form = row;
-        //             // console.log('单条同意',index,row)
-        //             let data = {
-        //                 token: window.sessionStorage.getItem('token'),
-        //                 uri_id:row.uri_id
-        //             }
-        //             let _this=this
-        //             // console.log(data)
-        //             this.$axios({
-        //                 method: "post",
-        //                 url: 'administrator/disagreeuser',
-        //                 data: this.$Qs.stringify(data)
-        //             })
-        //             .then(function(res) {
-        //                 // console.log("单条不同意",res);
-        //                 if(res.data.resultCode==20032){
-        //                     _this.getData()
-        //                     // location.reload()
-        //                 }
-        //                 else if(res.data.resultCode==20033){
-        //                     this.$message.error('审核失败')
-        //                 }
-        //             })
-        //             .catch(function(err) {
-        //                 console.log(err);
-        //             })
-        //         })
-        //         .catch(() => {});
-        // },
-        // 多选操作
-        // handleSelectionChange(val) {
-        //     this.multipleSelection = val;
-        // },
-        // 批量同意
-        // agreeAllSelection() {
-        //     const length = this.multipleSelection.length;
-        //     let ids = '';
-        //     this.agreeList = this.multipleSelection;
-        //     // console.log('同意列表',this.agreeList)
-        //     for (let i = 0; i < length; i++) {
-        //         ids += this.agreeList[i].uri_id + ',';
-        //     }
-        //     // console.log('单条同意',index,row)
-        //     let data = {
-        //         token: window.sessionStorage.getItem('token'),
-        //         uri_id:ids
-        //     }
-        //     let _this=this
-        //     // console.log(data)
-        //     this.$axios({
-        //         method: "post",
-        //         url: 'administrator/agreeUser',
-        //         data: this.$Qs.stringify(data)
-        //     })
-        //     .then(function(res) {
-        //         // console.log("批量同意",res);
-        //         if(res.data.resultCode==20032){
-        //             _this.getData()
-        //             // location.reload()
-        //         }
-        //         else if(res.data.resultCode==20033){
-        //             this.$message.error('审核失败')
-        //         }
-        //     })
-        //     .catch(function(err) {
-        //         console.log(err);
-        //     })
-        // },
-        // 批量不同意
-        // disagreeAllSelection(){
-        //     this.$confirm('确定要不通过用户注册吗？', '提示', {
-        //         type: 'warning'
-        //     })
-        //         .then(() => {
-        //             const length = this.multipleSelection.length;
-        //             let ids = '';
-        //             this.agreeList = this.multipleSelection;
-        //             // console.log('同意列表',this.agreeList)
-        //             for (let i = 0; i < length; i++) {
-        //                 ids += this.agreeList[i].uri_id + ',';
-        //             }
-        //             // console.log('单条同意',index,row)
-        //             let data = {
-        //                 token: window.sessionStorage.getItem('token'),
-        //                 uri_id:ids
-        //             }
-        //             let _this=this
-        //             // console.log(data)
-        //             this.$axios({
-        //                 method: "post",
-        //                 url: 'administrator/disagreeuser',
-        //                 data: this.$Qs.stringify(data)
-        //             })
-        //             .then(function(res) {
-        //                 // console.log("批量同意",res);
-        //                 if(res.data.resultCode==20032){
-        //                     _this.getData()
-        //                     // location.reload()
-        //                 }
-        //                 else if(res.data.resultCode==20033){
-        //                     this.$message.error('审核失败')
-        //                 }
-        //             })
-        //             .catch(function(err) {
-        //                 console.log(err);
-        //             })
-        //         })
-        //         .catch(() => {});
-        // },
         // 分页导航
         handlePageChange(val) {
             this.page=val

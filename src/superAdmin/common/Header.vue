@@ -83,7 +83,7 @@ export default {
             }
             if (command == 'loginout') {
                 window.sessionStorage.clear()
-                this.$router.push('/superAdmin/login');
+                this.$router.push('/login');
             }
         },
         // 侧边栏折叠

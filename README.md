@@ -1,5 +1,9 @@
-##安装项目
-#npm install
+## 安装项目
+```
+npm install
+```
 
-##运行项目
-#npm runserver
+### 运行项目
+```
+npm run server
+```
